@@ -4,28 +4,30 @@ import Combine
 
 class ListItemModel {
 
-    private static var imageCache: NSCache<NSString, NSData> = {
-        let cache = NSCache<NSString, NSData>()
-        cache.totalCostLimit = 50_000_000
-        return cache
-    }()
-
     @Published var imageData: Data? = nil
+    @Published var isWatched = false
     let movie: Movie
 
     private let networkService: NetworkService
+    private let cacheService: CacheService
     private var cancellable: AnyCancellable?
 
-    init(networkService: NetworkService, movie: Movie) {
+    init(networkService: NetworkService, cacheService: CacheService, movie: Movie) {
         self.networkService = networkService
+        self.cacheService = cacheService
         self.movie = movie
+    }
+
+    func toggleIsWatched() {
+        isWatched.toggle()
     }
 
     func fetchImage() {
         guard let posterPath = movie.posterPath else { return }
 
-        if let data = Self.imageCache.object(forKey: posterPath as NSString) {
+        if let data = cacheService.object(forKey: posterPath as NSString) {
             imageData = data as Data
+            return
         }
 
         cancellable = networkService.fetchPoster(for: posterPath)
@@ -34,7 +36,7 @@ class ListItemModel {
                 guard case let .failure(error) = completion else { return }
                 print(error)
             }, receiveValue: { [weak self] data in
-                Self.imageCache.setObject(data as NSData, forKey: posterPath as NSString)
+                self?.cacheService.cache(object: data as NSData, forKey: posterPath as NSString)
                 self?.imageData = data
             })
     }

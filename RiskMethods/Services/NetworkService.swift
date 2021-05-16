@@ -19,12 +19,13 @@ extension URLSession: NetworkService {
 
     func fetchMovieList(for query: String) -> AnyPublisher<[Movie], Error> {
         guard !query.isEmpty else {
-            return Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
+            return justWithError([])
         }
 
         var components = URLComponents(string: searchURLPath)
         components?.queryItems = [
-            .init(name: "api_key", value: apiKey), .init(name: "query", value: query)
+            .init(name: "api_key", value: apiKey),
+            .init(name: "query", value: query)
         ]
 
         guard let url = components?.url else {
@@ -33,7 +34,7 @@ extension URLSession: NetworkService {
 
         return dataTaskPublisher(for: url)
             .map(\.data)
-            .decode(type: MovieList.self, decoder: JSONDecoder())
+            .decode(type: SearchMovieResponse.self, decoder: JSONDecoder())
             .map(\.movies)
             .breakpointOnError()
             .eraseToAnyPublisher()
@@ -48,29 +49,4 @@ extension URLSession: NetworkService {
     }
 }
 
-struct MovieList: Decodable {
-    enum CodingKeys: String, CodingKey {
-        case results
-    }
 
-    let movies: [Movie]
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        movies = try container.decode([Movie].self, forKey: .results)
-    }
-}
-
-struct Movie: Decodable {
-    enum CodingKeys: String, CodingKey {
-        case posterPath = "poster_path"
-        case title
-        case overview
-        case id
-    }
-
-    let id: Int
-    let title: String?
-    let overview: String?
-    let posterPath: String?
-}

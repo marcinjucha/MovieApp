@@ -20,13 +20,25 @@
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kK1-B1-VEI">
                         <rect key="frame" x="8" y="8" width="389" height="253"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" verticalCompressionResistancePriority="800" translatesAutoresizingMaskIntoConstraints="NO" id="7ql-IZ-tl4">
-                                <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="2o2-Rj-hSz"/>
-                                    <constraint firstAttribute="width" constant="100" id="7SM-Ta-FFx"/>
-                                </constraints>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yyJ-9h-Lz5">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="188"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" verticalCompressionResistancePriority="800" translatesAutoresizingMaskIntoConstraints="NO" id="7ql-IZ-tl4">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="2o2-Rj-hSz"/>
+                                            <constraint firstAttribute="width" constant="100" id="7SM-Ta-FFx"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ye-vA-A85" userLabel="watchButton">
+                                        <rect key="frame" x="0.0" y="158" width="100" height="30"/>
+                                        <state key="normal" title="Not watched"/>
+                                        <connections>
+                                            <action selector="toggleIsWatched" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ihk-7y-FKn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gWd-wQ-C6D">
                                 <rect key="frame" x="108" y="0.0" width="281" height="42"/>
                                 <subviews>
@@ -44,9 +56,6 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="7ql-IZ-tl4" firstAttribute="top" secondItem="mtr-KG-uPN" secondAttribute="top" id="R5g-T8-FKt"/>
-                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
@@ -61,6 +70,7 @@
                 <outlet property="imgView" destination="7ql-IZ-tl4" id="DnS-KQ-kZ2"/>
                 <outlet property="overview" destination="6RN-Ns-gYt" id="Oar-on-ggv"/>
                 <outlet property="title" destination="mtr-KG-uPN" id="aHU-YI-vYz"/>
+                <outlet property="watchButton" destination="0ye-vA-A85" id="WM4-OF-hi4"/>
             </connections>
             <point key="canvasLocation" x="44.20289855072464" y="92.075892857142847"/>
         </tableViewCell>

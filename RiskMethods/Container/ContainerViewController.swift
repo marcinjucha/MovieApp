@@ -6,18 +6,16 @@
 //
 
 import UIKit
-import Combine
 
 class ContainerViewController: BaseViewController {
 
-    private lazy var search = SearchViewController(model: .init(networkService: networkService))
-    private lazy var list = ListViewController(networkService: networkService)
-    private let networkService: NetworkService
+    let model: ContainerModel
 
-    private var cancellable: AnyCancellable?
+    private lazy var search = SearchViewController(model: model.searchModel)
+    private lazy var list = ListViewController(model: model.listModel)
 
-    init(networkService: NetworkService) {
-        self.networkService = networkService
+    init(model: ContainerModel) {
+        self.model = model
 
         super.init()
     }
@@ -26,6 +24,7 @@ class ContainerViewController: BaseViewController {
         super.viewDidLoad()
 
         title = "Movie list"
+        model.setup()
 
         embedChild(search, anchors: [.leading, .top, .trailing])
         embedChild(list, anchors: [.leading, .trailing, .bottom])
@@ -33,9 +32,5 @@ class ContainerViewController: BaseViewController {
         list.view.layoutConstraints(to: search.view, anchors: [
             .custom({ $0.topAnchor.constraint(equalTo: $1.bottomAnchor) })
         ])
-
-        cancellable = search.model.$movies
-            .sink { [weak list] movies in
-            list?.movies = movies }
     }
 }

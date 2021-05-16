@@ -15,7 +15,6 @@ class SearchModel {
 
     init(networkService: NetworkService) {
         self.networkService = networkService
-
     }
 
     func setup() {
@@ -24,7 +23,7 @@ class SearchModel {
             .debounce(for: .seconds(0.2), scheduler: RunLoop.main)
             .flatMap { [weak self] in
                 self?.networkService.fetchMovieList(for: $0)
-                    ?? Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
+                    ?? justWithError([])
             }
             .receive(on: RunLoop.main)
             .sink(

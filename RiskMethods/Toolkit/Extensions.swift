@@ -23,12 +23,11 @@ extension UIViewController {
 
 extension UITableView {
 
-    func registerNib<T: UITableViewCell>(_ type: T.Type = T.self) where T: IdentifiableView {
+    func registerNib<T: UITableViewCell>(_ type: T.Type = T.self) {
         register(T.nib, forCellReuseIdentifier: T.identifier)
     }
 
-    func dequeueCell<T: UITableViewCell & IdentifiableView>(at index: IndexPath) -> T {
+    func dequeueCell<T: UITableViewCell>(at index: IndexPath) -> T {
         dequeueReusableCell(withIdentifier: T.identifier, for: index) as! T
     }
-
 }

@@ -6,29 +6,36 @@
 //
 
 import UIKit
+import Combine
 
-class ContainerViewController: UIViewController {
+class ContainerViewController: BaseViewController {
 
-    let label = UILabel()
+    private lazy var search = SearchViewController(model: .init(networkService: networkService))
+    private lazy var list = ListViewController(networkService: networkService)
+    private let networkService: NetworkService
 
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
+    private var cancellable: AnyCancellable?
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    init(networkService: NetworkService) {
+        self.networkService = networkService
 
-    override func loadView() {
-        view = label
+        super.init()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        label.text = "YO"
-        label.textColor = .white
+        title = "Movie list"
+
+        embedChild(search, anchors: [.leading, .top, .trailing])
+        embedChild(list, anchors: [.leading, .trailing, .bottom])
+
+        list.view.layoutConstraints(to: search.view, anchors: [
+            .custom({ $0.topAnchor.constraint(equalTo: $1.bottomAnchor) })
+        ])
+
+        cancellable = search.model.$movies
+            .sink { [weak list] movies in
+            list?.movies = movies }
     }
-
 }
-

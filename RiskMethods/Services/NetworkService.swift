@@ -14,7 +14,7 @@ protocol NetworkService {
 extension URLSessionDataTask: Cancellable {}
 
 extension URLSession: NetworkService {
-    private var apiKey: String { "808dd2ed8c88cdbf4bff0d58835ed07f" }
+    private var apiKey: String { Configuration.default.apiKey }
     private var searchURLPath: String { "https://api.themoviedb.org/3/search/movie" }
 
     func fetchMovieList(for query: String) -> AnyPublisher<[Movie], Error> {

@@ -21,6 +21,8 @@
 		46A6FB3926519A58000C4135 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A6FB3826519A58000C4135 /* Movie.swift */; };
 		46A6FB3B26519A72000C4135 /* SearchMovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A6FB3A26519A72000C4135 /* SearchMovieResponse.swift */; };
 		46A6FB432651A518000C4135 /* RiskMethodsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A6FB422651A518000C4135 /* RiskMethodsTests.swift */; };
+		46A6FB4B265238A1000C4135 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46A6FB4A265238A1000C4135 /* Configuration.plist */; };
+		46A6FB4D26523926000C4135 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A6FB4C26523926000C4135 /* Configuration.swift */; };
 		DF4CB3EC9801131F0602D11F /* SystemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CBBD215658C2415D8411F /* SystemService.swift */; };
 		DF4CB64982DA7F5933AF397B /* IdentifibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB76601D9D1AE70A83B76 /* IdentifibleView.swift */; };
 		DF4CB68907D7EAA0D44E76B5 /* ListItemModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4CB2E0896F4B72022EBD4D /* ListItemModelTests.swift */; };
@@ -69,6 +71,8 @@
 		46A6FB402651A518000C4135 /* RiskMethodsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiskMethodsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46A6FB422651A518000C4135 /* RiskMethodsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskMethodsTests.swift; sourceTree = "<group>"; };
 		46A6FB442651A518000C4135 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46A6FB4A265238A1000C4135 /* Configuration.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Configuration.plist; sourceTree = "<group>"; };
+		46A6FB4C26523926000C4135 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		DF4CB2E0896F4B72022EBD4D /* ListItemModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemModelTests.swift; sourceTree = "<group>"; };
 		DF4CB3C83F1D39960B2075ED /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DF4CB54A29160FA3C5437F69 /* LayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutConstraint.swift; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 				46A6FB2C2651485F000C4135 /* Search */,
 				46A6FB1C26513C7A000C4135 /* Services */,
 				46A6FB2126513E8A000C4135 /* Toolkit */,
+				46A6FB4A265238A1000C4135 /* Configuration.plist */,
+				46A6FB4C26523926000C4135 /* Configuration.swift */,
 			);
 			path = RiskMethods;
 			sourceTree = "<group>";
@@ -310,6 +316,7 @@
 				46A6FB2026513E4F000C4135 /* ListViewController.xib in Resources */,
 				46A6FB122651201B000C4135 /* LaunchScreen.storyboard in Resources */,
 				46A6FB2B2651471F000C4135 /* SearchViewController.xib in Resources */,
+				46A6FB4B265238A1000C4135 /* Configuration.plist in Resources */,
 				46A6FB0F2651201B000C4135 /* Assets.xcassets in Resources */,
 				DF4CB7BFD56FF416F5627E78 /* ListItemCell.xib in Resources */,
 			);
@@ -335,6 +342,7 @@
 				46A6FB062651201A000C4135 /* AppDelegate.swift in Sources */,
 				46A6FB082651201A000C4135 /* SceneDelegate.swift in Sources */,
 				46A6FB1F26513E4F000C4135 /* ListViewController.swift in Sources */,
+				46A6FB4D26523926000C4135 /* Configuration.swift in Sources */,
 				46A6FB3926519A58000C4135 /* Movie.swift in Sources */,
 				46A6FB2326513EA4000C4135 /* Extensions.swift in Sources */,
 				DF4CB64982DA7F5933AF397B /* IdentifibleView.swift in Sources */,
